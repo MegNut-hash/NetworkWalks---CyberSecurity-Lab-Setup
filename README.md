@@ -61,13 +61,13 @@ Installed VirtualBox 7.2.16 as the hypervisor on the host.
 
 Created a dedicated NAT Network in VirtualBox rather than using the default NAT adapter, since a NAT Network lets multiple VMs on the same network talk to each other while still routing out — a plain NAT adapter isolates each VM from the others.
 
-**[Screenshot: NAT Network settings — network name, IPv4 prefix, DHCP]**
+![NAT Network settings](2-screenshot-nat-network.png)
 
 ## 3. Import Kali Linux
 
 Downloaded the Kali Linux VM image from the official site and imported it into VirtualBox.
 
-**[Screenshot: VM details pane — the one you just uploaded]**
+![Kali VM details](1-screenshot-vm-details.png)
 
 Key config:
 - Base Memory: 4096 MB
@@ -79,7 +79,7 @@ Key config:
 
 Set a consistent IP on Kali via NetworkManager (IPv4 Settings → Manual) so it's easy to reference in future exercises instead of relying on whatever DHCP hands out.
 
-**[Screenshot: NetworkManager IPv4 Settings — address 10.0.0.2, netmask 24, gateway 10.0.0.1, DNS 8.8.8.8]**
+![Kali IPv4 settings](3-screenshot-ipv4-settings.png)
 
 Confirmed the config took effect on the command line:
 
@@ -90,7 +90,7 @@ $ ip a
     inet 10.0.0.2/24 brd 10.0.0.255 scope global noprefixroute eth0
 ```
 
-**[Screenshot: terminal output of `ip a` + `ping google.com`]**
+![ip a and ping output](4-screenshot-ip-ping.png)
 
 ## 5. Take a Clean Snapshot
 
@@ -111,8 +111,9 @@ Snapshot name: *[fill in]*
 | Nmap installed | `nmap --version` | ✅ Nmap 7.99 |
 | Snapshot restores cleanly | Restore + `ip a` | ✅ baseline config comes back |
 
-**[Screenshot: `ping 8.8.8.8` + `nslookup google.com` output]**
-**[Screenshot: `nmap --version` output]**
+![ping and nslookup output](5-screenshot-nslookup-nmap.png)
+
+![nslookup and nmap version output](6-screenshot-nmap-version.png)
 
 ---
 
@@ -130,13 +131,13 @@ Restarted the connection and connectivity came back.
 
 > Connection names can differ between installs — check yours first with `nmcli connection show` before running the modify command.
 
-## Problem 2: VirtualBox wouldn't start the VM (VT-x error)
+## Problem 2: VirtualBox wouldn't start the VM (virtualization disabled)
 
-VirtualBox refused to boot the Kali VM, throwing a virtualization error. Hardware virtualization was disabled in the host's BIOS/UEFI.
+VirtualBox refused to boot the Kali VM, throwing a virtualization error. On this machine (AMD Ryzen), hardware virtualization was disabled in the host's BIOS/UEFI.
 
 Fix:
 1. Rebooted into BIOS/UEFI
-2. Enabled Intel VT-x
+2. Enabled AMD-V / SVM Mode (the Ryzen equivalent of Intel VT-x)
 3. Saved and rebooted
 4. VM booted normally after that
 
