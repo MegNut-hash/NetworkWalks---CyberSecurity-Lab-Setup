@@ -37,7 +37,7 @@ Running security tools against live networks or systems that I am not given acce
 |---|---|
 | Host OS | Windows 11 Home |
 | Host RAM | 32 GB |
-| Hypervisor | VirtualBox *[version]* |
+| Hypervisor | VirtualBox 7.2.16 |
 | Guest OS | Kali Linux 2026.2 |
 | Guest RAM | 4096 MB |
 | Guest CPUs | 2 |
@@ -55,7 +55,7 @@ Running security tools against live networks or systems that I am not given acce
 
 ## 1. Install VirtualBox
 
-Installed VirtualBox *[version]* as the hypervisor on the host.
+Installed VirtualBox 7.2.16 as the hypervisor on the host.
 
 ## 2. Build the NAT Network
 
