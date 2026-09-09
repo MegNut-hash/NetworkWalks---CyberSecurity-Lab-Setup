@@ -96,7 +96,7 @@ $ ip a
 
 Snapshotted the VM once networking was confirmed working, so I always have a baseline to roll back to after breaking something during an exercise.
 
-Snapshot name: *[fill in]*
+Snapshot name: `Clean-Kali-NAT-10.0.0.2-2026-09`
 
 ---
 
