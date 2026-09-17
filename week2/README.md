@@ -44,7 +44,7 @@ Registrant info: privacy-protected via Domains By Proxy, LLC (Tempe, AZ) — no 
 
 Output saved to `whois.txt`.
 
-![WHOIS output](week2-screenshots/w2-1-screenshot-whois.png)
+![WHOIS output](w2-1-screenshot-whois.png)
 
 ### 2. WhatWeb Fingerprinting
 
@@ -65,7 +65,7 @@ Key findings:
 
 Output saved to `whatweb.txt`.
 
-![WhatWeb output](week2-screenshots/w2-2-screenshot-whatweb.png)
+![WhatWeb output](w2-2-screenshot-whatweb.png)
 
 ### 3. DNS Resolution Check
 
@@ -75,7 +75,7 @@ nslookup networkwalks.com
 
 Resolves via `8.8.8.8` to `192.232.216.135` — matches the IP WhatWeb reported, so it's a single consistent A record rather than something like a CDN doing per-region resolution.
 
-![nslookup output](week2-screenshots/w2-3-screenshot-nslookup.png)
+![nslookup output](w2-3-screenshot-nslookup.png)
 
 ### 4. HTTP Header Inspection
 
@@ -92,7 +92,7 @@ Notable headers:
 
 **What this tells me:** the stack is layered — Apache sitting behind what looks like an Nginx cache/reverse proxy, on Endurance-group shared hosting (same group as HostGator), with extra bot-mitigation services referenced in the permissions-policy header. Good to know if I'm ever mapping out the full request path.
 
-![curl headers output](week2-screenshots/w2-4-screenshot-curl-headers.png)
+![curl headers output](w2-4-screenshot-curl-headers.png)
 
 ### 5. WAF Detection
 
@@ -104,7 +104,7 @@ Result: site is behind **ModSecurity (SpiderLabs) WAF**.
 
 **What this tells me:** there's an active web application firewall in front of the site, which matters for how any authorized active testing (fuzzing, injection attempts) would get handled — requests could get blocked or logged.
 
-![wafw00f output](week2-screenshots/w2-5-screenshot-wafw00f.png)
+![wafw00f output](w2-5-screenshot-wafw00f.png)
 
 ### 6. Deep DNS Enumeration
 
@@ -122,7 +122,7 @@ Key records:
 
 **What this tells me:** the nameservers are disclosing their exact BIND version (`9.16.23-RH`), which is a minor info leak — if that version had a known CVE it would narrow down the attack surface for anyone probing the DNS servers. The SPF record and cPanel autodiscover SRV records confirm this is a pretty standard shared-hosting setup (HostGator/cPanel) sitting behind the WAF/caching layer from earlier.
 
-![dnsrecon output](week2-screenshots/w2-6-screenshot-dnsrecon.png)
+![dnsrecon output](w2-6-screenshot-dnsrecon.png)
 
 ---
 
