@@ -14,6 +14,9 @@ Each week gets its own folder with a README and screenshots covering what I did,
 - **[Week 2 — Passive Reconnaissance & OSINT](week2/README.md)**
   Ran passive OSINT tools (WHOIS, WhatWeb, dnsrecon, curl, wafw00f) against networkwalks.com, with permission, to map out its public-facing footprint.
 
+- **[Week 3 — Password Cracking](week3/notes.md)**
+  Cracked a password-protected PDF two ways: with John the Ripper (JTR/Johnny) and with Networkwalks' own browser-based hash calculator and cracker tools.
+
 ---
 
 ## 👤 Author
