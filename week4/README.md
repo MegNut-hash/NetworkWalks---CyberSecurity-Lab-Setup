@@ -58,7 +58,13 @@ Both issues are rated **Critical**. The backup directory exposure in particular 
 
 The patient login form does not sanitise or parameterise user input before using it in a backend SQL query. Submitting `admin' --` as the username, with any arbitrary string as the password, causes the database query's password check to be commented out, returning a valid authenticated session as if the credentials were correct.
 
-> ⚠️ **Evidence gap:** No screenshot of this specific step was captured during testing. This finding is documented from direct recollection of the exploitation and should be re-verified and screenshotted (login form with payload entered, and the resulting authenticated session/file listing) before this report is treated as final, so the finding is independently verifiable.
+Payload entered into the login form:
+
+![admin' -- entered as username on the patient login](screenshots/f1-payload-entered.png)
+
+Resulting authenticated session, landing on `medirozahospital.com/patient/portal.php` with full access to all three patient pathology reports:
+
+![Authenticated access to My lab reports after the bypass](screenshots/f1-bypass-successful.png)
 
 This access was the pivot point that exposed the three patient PDF reports detailed in Finding 2.
 
